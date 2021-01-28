@@ -102,7 +102,7 @@ class SuppliersController extends Controller
      * @param  \App\suppliers  $suppliers
      * @return \Illuminate\Http\Response
      */
-    public function destroy(suppliers $suppliers)
+    public function destroy( $id)
     {
         //
         $product = suppliers::find($id);
