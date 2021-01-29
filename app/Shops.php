@@ -26,7 +26,7 @@ class Shops extends Model
         return DB::select('select COUNT(*) as cnt, SUM(tovar_price) as price from orders where shop_id = ? and status = 1', [$this->id]);
     }
 		public  function statistics_warehouse(){
-			return DB::select('SELECT sklad, COUNT(*) as cnt, SUM(tovar_price) as sum FROM orders WHERE shop_id = ? AND status = 1 GROUP by sklad', [$this->id]);
+			return DB::select('SELECT sklad, COUNT(*) as cnt, SUM(tovar_price) as sum FROM orders WHERE shop_id = ? AND status = 1 GROUP BY sklad', [$this->id]);
 		}
     public  function statisticsByDate($fromDate, $toDate){
 

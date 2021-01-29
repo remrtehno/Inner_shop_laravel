@@ -58,7 +58,7 @@ public $successStatus = 200;
     { 
 
         $query = $request->all()['q']['term'];
-        $products = Product::where('article', 'like' , "$query%")->get(); 
+        $products = Product::where('article', 'like' , "$query%")->leftJoin('samples', 'products.id', '=', 'samples.product_id')->get();
         return response()->json(['success' => $products], $this-> successStatus); 
     } 
 }

@@ -42,10 +42,11 @@ $(function () {
 			)
 			.append(item.article)
 			.append(" - ")
-			.append(item.batch)
+			.append(item.batch || '_')
 			.append(" - ")
-			.append(item.qty)
-
+			.append(item.qty || '_')
+			.append(" - ")
+			.append(item.shop_id ? item.shop_id.split(',').length : '0')
 			.appendTo(ul);
 	};
 });

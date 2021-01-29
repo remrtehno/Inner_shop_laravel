@@ -37,8 +37,9 @@
                             <th>Артикул</th>
                             <th>Партия</th>
                             <th>Количество</th>
-                            <th>Закупочная Цена</th>
-                            <th>Розничная Цена</th>
+                            <th>Образцы</th>
+                            <th>Закуп Цена</th>
+                            <th>Розн Цена</th>
                             <th>Склад</th>
                             <th>Магазин</th>
                             <th>Поставщик</th>
@@ -53,6 +54,7 @@
                             <td>{{ $item->article }}</td>
                             <td>{{ $item->batch }}</td>
                             <td>{{ $item->qty }}</td>
+                            <td>{{ $item->getShopsBySamples() }}</td>
                             <td>{{ $item->buy_price }}</td>  
 
                             <td> 

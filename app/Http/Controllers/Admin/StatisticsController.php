@@ -17,23 +17,17 @@ class StatisticsController extends Controller
      */
     public function index(Request $request)
     {
-         ///$shops = Shops::with(['products'])->withCount('products')->get();
         $shops = Shops::all();
-
-       
+	    
         $from = null;
         $to  = null;
 
         if(!empty($request->all())) {
-            $from    = $request->all()['from']; // 2018-09-29 00:00:00
-
-            $to      = $request->all()['to']; // 2018-09-29 23:59:59
+            $from    = $request->all()['from'];
+            $to      = $request->all()['to'];
         }
-
-
-
+	    
         return view("admin.statistics.index", compact('shops','to', 'from'));
-        
     }
 
     /**
@@ -77,13 +71,9 @@ class StatisticsController extends Controller
         $to      = Carbon::parse($request->all()['date-to'])
                          ->endOfDay()          // 2018-09-29 23:59:59.000000
                          ->toDateTimeString(); // 2018-09-29 23:59:59
+	    
+       $orders  = [];
 
-                          // print_r($to );
-                          // print_r($from );
-
-       $orders  = [];//Shops::whereBetween('created_at', [$from, $to])->get();
-
-//$getmonths= DB::table('Financial_Year') ->whereRaw('"'.$dt.'" between `start_date` and `End_date`')->get();
 
 
         return view("admin.statistics.index", compact('shops','to', 'from'));

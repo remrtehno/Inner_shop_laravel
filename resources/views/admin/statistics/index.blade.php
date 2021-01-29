@@ -71,51 +71,35 @@
 
                     </div>
 
-
-
-
-
-
                     @foreach($shops as $key => $item)
-
-
-
                         <div role="tabpanel" class="tab-pane {{ $key == 0 ? 'active' : ''}}" id="m-{{$item->id}}">
                             <br>
                             <p></p>
                             <table class="table" style="padding-top: 20px">
                                 <thead>
-                                    <tr>
-                                        <th>Склад</th>
-                                        <th>Количество</th>
-                                        <th>Закупочная Цена</th>
-                                    </tr>
+                                <tr>
+                                    <th>Склад</th>
+                                    <th>Количество</th>
+                                    <th>Закупочная Цена</th>
+                                </tr>
                                 </thead>
                                 @if(count($item->statistics_warehouse()))
-
                                     <?php $sum = 0; $cnt = 0; ?>
-                                @foreach($item->statistics_warehouse() as $val)
-		                                    <?php $sum += $val->sum; $cnt += $val->cnt; ?>
-                                    <tr>
-                                        <td>{!! $val->sklad !!}</td>
-                                        <td>{!! $val->cnt !!}</td>
-                                        <td>{!! $val->sum ? $val->sum : 0 !!}$</td>
-                                    </tr>
-
-
-                                @endforeach
-
+                                    @foreach($item->statistics_warehouse() as $val)
+                                        <?php $sum += $val->sum; $cnt += $val->cnt; ?>
+                                        <tr>
+                                            <td>{!! $val->sklad !!}</td>
+                                            <td>{!! $val->cnt !!}</td>
+                                            <td>{!! $val->sum ? $val->sum : 0 !!}$</td>
+                                        </tr>
+                                    @endforeach
                                     <tr style="font-weight: bold;">
                                         <td>Всего</td>
                                         <td>{{$cnt}}</td>
                                         <td>{{$sum }}$</td>
                                     </tr>
-
                                 @endif
-
                             </table>
-
-
 
                             @if(count($item->statistics($from, $to)))
                                 <br>

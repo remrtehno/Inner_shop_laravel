@@ -347,7 +347,9 @@
         //Initialize Select2 Elements
 
         $("#example1").DataTable();
-        $(".DataTable").DataTable();
+        $(".DataTable").DataTable({
+            "order": [[ 0, 'desc' ]]
+        });
 
         if(!document.querySelector('.noEditor')) {
           var editor = CKEDITOR.replaceAll()

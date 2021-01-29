@@ -31,6 +31,11 @@ class Product extends Model
         $this->save();
     }
     
+    public function getShopsBySamples() {
+    	$samples = Samples::select('shop_id')->where('product_id', $this->id)->first();
+    	return isset($samples->shop_id) ? count(explode(',', $samples->shop_id)) : '';
+    }
+    
     public function getShop() {
     	
     	if(Shops::find($this->shop_id)) return Shops::find($this->shop_id)->title;
