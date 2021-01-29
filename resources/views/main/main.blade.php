@@ -211,6 +211,8 @@ a.logo, .all_categories_btn {
               });
 
           });
+
+        
       </script>
     </body>
 </html>

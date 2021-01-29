@@ -362,6 +362,12 @@
             format: 'yyyy-mm-dd',
         });
     });
+
+    $('.nav-tabs a').click( function(e) {
+        window.location.hash = $(this).attr('href');
+    })
+
+    $('[href="'+window.location.hash+'"]').click();
 </script>
 </body>
 
