@@ -38,7 +38,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Имя</th>
-                            <!-- <th>Действия</th> -->
+                             <th>Действия</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -47,7 +47,7 @@
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->name }}</td>
-                           <!--  <td><a href="{{ route('news.edit',['id'=>$item->id]) }}" class="fa fa-pencil" style="float: left;"></a>
+                            <td><a href="{{ route('news.edit',['id'=>$item->id]) }}" class="fa fa-pencil" style="float: left;"></a>
 
 <form action="{{route('news.destroy',['id'=>$item->id])}}" method="post">
     @csrf
@@ -57,7 +57,7 @@
                                     <i class="fa fa-remove"></i>
                                 </button>
                                 </form>
-                            </td> -->
+                            </td>
                         </tr>
 
                         @endforeach

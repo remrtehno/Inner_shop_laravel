@@ -18,7 +18,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
+        $news = User::all();
         return view('admin.news.index',compact('news'));
     }
 
@@ -60,7 +60,7 @@ class NewsController extends Controller
         $request = $request->all();
         $user = User::create([
             'name' => $request['name'],
-            'email' => $request['email'],
+            'email' => isset($request['email']) ? $request['email'] : '' ,
             'password' => Hash::make($request['password']),
         ]);
 
@@ -84,9 +84,9 @@ class NewsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id = 0)
     {
-        $sl = News::find($id);
+        $sl = User::find($id);
         return view('admin.news.edit',compact('sl'));
     }
 
@@ -99,23 +99,26 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'title' =>'required',
-            'text'   =>  'required',
-            'anonce'   =>  'required',
-            'text'   =>  'required',
-
-            'img' =>  'nullable|image'
-        ]);
-
-        $post = News::find($id);
-
-        $post->edit($request->all());
-        $post->uploadImage($request->file('img'));
-
-
-
-        return redirect()->route('news.index');
+     
+			$new_password = $request->all()['new_password'];
+	
+	    $request->validate([
+		    'name' =>'required',
+		   // 'current_password' => ['required', new MatchOldPassword],
+		   // 'new_password' => ['required'],
+		   // 'new_confirm_password' => ['same:new_password'],
+		   
+	    ]);
+	
+	    $post = User::find($id);
+	    $post->edit($request->all());
+	    
+	    if($new_password) {
+		    User::find($id)->update(['password'=> Hash::make($request->new_password)]);
+	    }
+	    
+	    
+	    return redirect()->route('news.index');
     }
 
     /**
@@ -126,15 +129,7 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        $news = News::find($id);
-        if($news->img !=''){
-
-
-            Storage::delete('/uploads/news/small/' . $news->img);
-            Storage::delete('/uploads/news/big/' . $news->img);
-
-
-        }
+        $news = User::find($id);
         $news->delete();
 
         return redirect()->route('news.index');

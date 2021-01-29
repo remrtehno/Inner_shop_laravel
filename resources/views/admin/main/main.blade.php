@@ -6,6 +6,84 @@
   <title>AdminLTE 2 | Blank Page</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link
+          rel="stylesheet"
+          href="/public/assets/css/jquery-ui.css"
+          type="text/css"
+          media="all"
+  />
+  <style>
+    .search-img, .search-img:hover, .search-img.ui-state-active {
+      height: 40px;
+      border-radius: 10px;
+      margin-right: 5px;
+      padding: 0 !important;
+      border: 0;
+      margin-bottom: 5px;
+      background: none;
+
+    }
+
+    .user-cabinet .row {
+      max-width: 90rem;
+
+    }
+    div.dataTables_filter {
+      display: flex;
+      justify-content: flex-end;
+    }
+    div.dataTables_filter input {
+      margin: auto;
+      margin-left: 15px;
+    }
+    .dataTables_length {
+      display: none;
+    }
+    .dataTables_length, .DataTables_Table_0_filter, .dataTables_filter {
+
+    }
+    table.dataTable thead th, table.dataTable thead td {
+      border-bottom: 1px solid #d9e3f3;
+    }
+    form.search_form_header {
+      position: relative;
+    }
+    form.search_form_header input {
+      position: absolute;
+      padding-left: 52px;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+    .ui-widget.ui-widget-content {
+
+      min-width: 395px;
+      margin-left: -60px;
+      margin-top: 15px;
+      border-radius: 10px;
+    }
+    .btn-primary:hover {
+      color: white !important;
+      opacity: .7;
+    }
+    .search-img, .search-img:hover, .search-img.ui-state-active {
+      margin-right: 10px;
+    }
+    .search-img, .search-img:hover, .search-img.ui-state-active {
+      margin-top: 0 !important;
+      margin-left: 0 !important;
+    }
+
+
+    .ui-widget.ui-widget-content {
+      padding: 10px 20px;
+      border: 1px solid #c5c5c5;
+      z-index: 999;
+      position: absolute;
+    }
+    /* Style The Dropdown Button */
+  </style>
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="/public/adminfaz/assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/public/adminfaz/assets/plugins/datepicker/datepicker3.css">
@@ -209,7 +287,7 @@
         </div>
       </div>
       <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
+      <form action="#" method="get" class="sidebar-form typeahead">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search...">
               <span class="input-group-btn">
@@ -261,6 +339,9 @@
 <script src="/public/adminfaz/assets/dist/js/demo.js"></script>
 <script src="/public/adminfaz/assets/plugins/ckeditor/ckeditor.js"></script>
 <script src="/public/adminfaz/assets/plugins/datepicker/bootstrap-datepicker.js"></script>
+
+<script src="/public/assets/js/jquery-ui.js"></script>
+<script src="/public/assets/js/script2.js"></script>
 <script>
     $(document).ready(function(){
         //Initialize Select2 Elements
