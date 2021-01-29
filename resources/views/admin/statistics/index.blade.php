@@ -81,16 +81,20 @@
                                     <th>Склад</th>
                                     <th>Количество</th>
                                     <th>Закупочная Цена</th>
+                                    <th>Розничная цена</th>
+                                    <th>Прибыль</th>
                                 </tr>
                                 </thead>
                                 @if(count($item->statistics_warehouse()))
-                                    <?php $sum = 0; $cnt = 0; ?>
+                                    <?php $sum = 0; $cnt = 0; $buy_sum = 0; ?>
                                     @foreach($item->statistics_warehouse() as $val)
-                                        <?php $sum += $val->sum; $cnt += $val->cnt; ?>
+                                        <?php $sum += $val->sum; $cnt += $val->cnt; $buy_sum += $val->buySum ?>
                                         <tr>
                                             <td>{!! $val->sklad !!}</td>
                                             <td>{!! $val->cnt !!}</td>
                                             <td>{!! $val->sum ? $val->sum : 0 !!}$</td>
+                                            <td>{!! $val->buySum ? $val->buySum : 0 !!}$</td>
+                                            <td>{!! ($val->sum ? $val->sum : 0) - ($val->buySum ? $val->buySum : 0) !!}$</td>
                                         </tr>
                                     @endforeach
                                     <tr style="font-weight: bold;">

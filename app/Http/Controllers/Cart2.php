@@ -97,6 +97,7 @@ class Cart2 extends Controller {
 				'article'     => $prod->article,
 				'batch'       => $prod->batch,
 				'sklad'       => $prod->sklad,
+				'buy_price'   => $prod->buy_price,
 			
 			
 			] );
