@@ -28,10 +28,7 @@
 
                     <div class="box-body">
                         <div class="col-md-6">
-                        <!-- <div class="form-group">
-                                <label for="exampleInputEmail1">Имя</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" value="{{ $sl->title }}" name="title">
-                            </div> -->
+
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Артикул</label>
@@ -60,7 +57,7 @@
                                     @foreach($warehouse as $item)
                                         <option
                                                 @if($sl->sklad == $item->title)
-                                                    selected
+                                                selected
                                                 @endif
                                                 value="{{$item->title}}">{{$item->title}}</option>
 
@@ -69,24 +66,6 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
-                                <label>Магазин</label>
-                                <select class="form-control select2" style="width: 100%;" name="shop_id">
-
-
-                                    @foreach($shops as $item)
-                                        <option
-
-                                                @if($sl->shop_id == $item->shop_id)
-                                                    selected
-                                                @endif
-
-                                                value="{{$item->id}}">{{$item->title}}</option>
-
-                                    @endforeach
-
-                                </select>
-                            </div>
 
                             <div class="form-group">
                                 <label>Поставщик</label>
@@ -96,7 +75,7 @@
                                     @foreach($suppliers as $item)
                                         <option
                                                 @if($sl->supplier == $item->name)
-                                                    selected
+                                                selected
                                                 @endif
 
 
@@ -107,29 +86,6 @@
                                 </select>
                             </div>
 
-
-
-                            {{--<div class="form-group">--}}
-                                {{--<label for="exampleInputEmail1">Поставщик</label>--}}
-                                {{--<input type="text" class="form-control" id="exampleInputEmail1" placeholder=""--}}
-                                       {{--name="supplier" value="{{ $sl->supplier }}">--}}
-                            {{--</div>--}}
-
-
-                        <!--
-                            <div class="form-group">
-                                <label>Магазин</label>
-                                <select class="form-control select2" style="width: 100%;" size="{{count($shops)}}" name="shop_id">
-                                    @foreach($shops as $item)
-                            <option
-                            value="{{$item->id}}"
-                                        @if($sl->shop_id == $item->id )
-                                selected
-@endif
-                                    >{{ $item->title }}</option>
-                                    @endforeach
-                                </select>
-                            </div> -->
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Закупочная Цена</label>

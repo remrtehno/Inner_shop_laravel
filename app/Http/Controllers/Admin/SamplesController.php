@@ -19,7 +19,7 @@ class SamplesController extends Controller
     {
         //
         //$items = Samples::all();
-        $items = Product::where('is_sample', '=', 1)->get();
+        $items = Product::all();
         $shops = Shops::all();
         $samples = Samples::all();
 

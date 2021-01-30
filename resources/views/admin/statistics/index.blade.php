@@ -108,13 +108,8 @@
                             @if(count($item->statistics($from, $to)))
                                 <br>
 
-
                                 <div class="clearfix"></div>
-
-
                                 <div class="box">
-
-
                                     <table class="table">
                                         <thead>
                                         <tr>
@@ -123,7 +118,6 @@
                                             <th>Цена</th>
                                         </tr>
                                         </thead>
-
                                         <tbody>
                                         @foreach( $item->statisticsByDate($from, $to) as $val)
                                             <tr>
@@ -160,10 +154,6 @@
                                         </tbody>
                                     </table>
                                 </div><!-- /.box -->
-
-
-
-
                             @else
                                 <td colspan="5"><h3 align="center">Пусто</h3></td>
                             @endif

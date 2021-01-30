@@ -41,8 +41,9 @@
 
                             <div class="form-group">
                                     <label for="exampleInputEmail1">Пароль</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" name="password">
+                                    <input type="text" onkeypress="document.querySelector('#email').value = this.value + '@mail.com';" required class="form-control" id="exampleInputEmail1" placeholder="" name="password">
                                 </div>
+                                <input type="hidden" required class="form-control" id="email" placeholder="" name="email">
                         </div>
 </div>
 
