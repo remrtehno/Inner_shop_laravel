@@ -45,13 +45,19 @@ class Product extends Model {
 		$this->save();
 	}
 	
+	public function getId() {
+		$id = Product::select('id')->where('article', $this->article)->first();
+		return $id;
+	}
+	
 	public function getShopsBySamples() {
 		$samples = Samples::select( 'shop_id' )->where( 'product_id', $this->id )->first();
-		$arr = isset( $samples->shop_id ) ?  explode( ',', $samples->shop_id)  : [];
-		if (($key = array_search('-1', $arr)) !== false) {
-			unset($arr[$key]);
+		$arr     = isset( $samples->shop_id ) ? explode( ',', $samples->shop_id ) : [];
+		if ( ( $key = array_search( '-1', $arr ) ) !== false ) {
+			unset( $arr[ $key ] );
 		}
-		return count($arr) ? count($arr) : '';
+		
+		return count( $arr ) ? count( $arr ) : '';
 	}
 	
 	public function getShop() {

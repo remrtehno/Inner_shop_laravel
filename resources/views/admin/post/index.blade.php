@@ -51,7 +51,7 @@
                             <tr>
                                 <td>{{ $item->article }}</td>
                                 <td>{{ $item->batch }}</td>
-                                <td>{{ $item->qty }}</td>
+                                <td>{{ $item->quantity_sum ? $item->quantity_sum : $item->qty }}</td>
                                 <td>{{ $item->getShopsBySamples() }}</td>
                                 <td>{{ $item->buy_price }}</td>
 
@@ -75,10 +75,10 @@
                                 </td>
 
 
-                                <td><a href="{{ route('post.edit',['id'=>$item->id]) }}" class="fa fa-pencil"
+                                <td><a href="{{ route('post.edit',['id'=>$item->getId()]) }}" class="fa fa-pencil"
                                        style="float: left;"></a>
 
-                                    <form action="{{route('post.destroy',['id'=>$item->id])}}" method="post">
+                                    <form action="{{route('post.destroy',['id'=>$item->getId()])}}" method="post">
                                         @csrf
 
                                         <input type="hidden" name="_method" value="delete">

@@ -38,6 +38,10 @@
                             </a></li>
 
                     @endforeach
+                    <li role="presentation"><a href="#total"
+                                               aria-controls="home"
+                                               role="tab"
+                                               data-toggle="tab">Total</a></li>
                 </ul>
 
                 <!-- Tab panes -->
@@ -86,15 +90,17 @@
                                 </tr>
                                 </thead>
                                 @if(count($item->statistics_warehouse()))
-                                    <?php $sum = 0; $cnt = 0; $buy_sum = 0; ?>
+																<?php $sum = 0; $cnt = 0; $buy_sum = 0; ?>
                                     @foreach($item->statistics_warehouse() as $val)
-                                        <?php $sum += $val->sum; $cnt += $val->cnt; $buy_sum += $val->buySum ?>
+																	<?php $sum += $val->sum; $cnt += $val->cnt; $buy_sum += $val->buySum ?>
                                         <tr>
                                             <td>{!! $val->sklad !!}</td>
                                             <td>{!! $val->cnt !!}</td>
                                             <td>{!! $val->sum ? $val->sum : 0 !!}$</td>
                                             <td>{!! $val->buySum ? $val->buySum : 0 !!}$</td>
-                                            <td>{!! ($val->sum ? $val->sum : 0) - ($val->buySum ? $val->buySum : 0) !!}$</td>
+                                            <td>{!! ($val->sum ? $val->sum : 0) - ($val->buySum ? $val->buySum : 0) !!}
+                                                $
+                                            </td>
                                         </tr>
                                     @endforeach
                                     <tr style="font-weight: bold;">
@@ -133,8 +139,20 @@
                                                     {{ $val->cnt }}
                                                 </td>
                                                 <td>
-                                                    {{ $val->price ? $val->price : '0' }} сум
+                                                    {{ $val->price ? $val->price : '0' }}$
                                                 </td>
+                                            </tr>
+                                        @endforeach
+
+                                        @foreach( $item->monthStatistics() as $val)
+                                            <tr>
+                                                <td>
+                                                    <b>За месяц</b>
+                                                </td>
+                                                <td>
+                                                    {{ $val->cnt }}
+                                                </td>
+                                                <td>{{ $val->price ? $val->price : '0' }}$</td>
                                             </tr>
                                         @endforeach
 
@@ -147,10 +165,12 @@
                                                     {{ $val->cnt }}
                                                 </td>
                                                 <td>
-                                                    {{ $val->price ? $val->price : '0' }} сум
+                                                    {{ $val->price ? $val->price : '0' }}$
                                                 </td>
                                             </tr>
                                         @endforeach
+
+
                                         </tbody>
                                     </table>
                                 </div><!-- /.box -->
@@ -162,6 +182,67 @@
 
                     @endforeach
 
+                    <div role="tabpanel" class="tab-pane {{ $key == 0 ? 'active' : ''}}" id="total">
+                        <div class="box">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Дата</th>
+                                    <th>Количество</th>
+                                    <th>Цена</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach( $item->getDayStatisticsForAll() as $val)
+                                    <tr>
+                                        <td>
+                                            <b> @if($from || $to)
+                                                    {{ $from ? 'от' : '' }} {{$from}} {{ $to ? 'до' : '' }} {{ $to }}
+                                                @else
+                                                    За сегодня
+                                                @endif
+                                            </b>
+                                        </td>
+                                        <td>
+                                            {{ $val->cnt }}
+                                        </td>
+                                        <td>
+                                            {{ $val->price ? $val->price : '0' }}$
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                @foreach( $item->getMonthStatisticsForAll() as $val)
+                                    <tr>
+                                        <td>
+                                            <b>За месяц</b>
+                                        </td>
+                                        <td>
+                                            {{ $val->cnt }}
+                                        </td>
+                                        <td>{{ $val->price ? $val->price : '0' }}$</td>
+                                    </tr>
+                                @endforeach
+
+                                @foreach( $item->getStatisticsForAll() as $val)
+                                    <tr>
+                                        <td>
+                                            <b> Общее за все время</b>
+                                        </td>
+                                        <td>
+                                            {{ $val->cnt }}
+                                        </td>
+                                        <td>
+                                            {{ $val->price ? $val->price : '0' }}$
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+
+                                </tbody>
+                            </table>
+                        </div><!-- /.box -->
+                    </div>
 
                 </div>
 

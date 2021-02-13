@@ -21,7 +21,17 @@ class ProductController extends Controller {
 	 */
 	public function index() {
 		
-		$prod = Product::all();
+		$prod = Product::groupBy( 'article', 'batch', 'qty' , 'buy_price', 'supplier', 'price', 'sklad' )->select( DB::raw( "SUM(`qty`) AS `quantity_sum`" ),
+			'article',
+			'batch',
+			'qty',
+			'buy_price',
+			'supplier',
+			'price',
+			'sklad'
+			
+			)->get();
+
 		
 		return view( "admin.post.index", compact( 'prod' ) );
 	}
