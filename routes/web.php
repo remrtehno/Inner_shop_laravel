@@ -58,6 +58,8 @@ Route::group( [
 	Route::resource( '/suppliers', 'SuppliersController' );
 	Route::resource( '/samples', 'SamplesController' );
 	Route::resource( '/warehouse', 'WarehouseController' );
+	Route::resource( '/prihod', 'PrihodController' );
+	Route::resource( '/kassa', 'KassaController' );
 	
 	Route::get( 'return-supplier', "ReturnedProductsController@return" )->name( 'returnSupplier' );
 	

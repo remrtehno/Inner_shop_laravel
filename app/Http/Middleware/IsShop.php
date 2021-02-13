@@ -16,9 +16,10 @@ class IsShop
      */
     public function handle($request, Closure $next)
     {
-
-
-
+	
+	//prevent to abort
+	    return $next($request);
+    	// check user is shop?
            if(Auth::user()->is_shop){
 
              return $next($request);

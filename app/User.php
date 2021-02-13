@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Session;
 
 class User extends Authenticatable
 {
@@ -41,5 +42,14 @@ class User extends Authenticatable
 		public function edit($fields) {
 			$this->fill($fields);
 			$this->save();
+		}
+		
+		public function get_shop_by_user_iD() {
+			$shop_id = Shops::select()->where('user_id', $this->id)->first();
+			if(is_null($shop_id)) {
+				Session::flash('alert','Сначала вам надо указать ваш магазин');
+				return ;
+			}
+			return $shop_id->id;
 		}
 }

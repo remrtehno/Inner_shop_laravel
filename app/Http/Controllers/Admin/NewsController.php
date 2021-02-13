@@ -60,7 +60,7 @@ class NewsController extends Controller
         $request = $request->all();
         $user = User::create([
             'name' => $request['name'],
-            'email' => isset($request['email']) ? $request['email'] : '' ,
+            'email' => isset($request['email']) ? $request['email'] : $request['name'] . '@site.uz' ,
             'password' => Hash::make($request['password']),
         ]);
 

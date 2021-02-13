@@ -8,7 +8,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-               Магазины
+                Магазины
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -38,7 +38,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Название</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="" name="title">
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder=""
+                                           name="title">
                                 </div>
 
 
@@ -54,27 +55,23 @@
 
                                     </select>
                                 </div>
-                               
+
 
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Описание</label>
-                                    <textarea name="anonce" id="editor" cols="30" rows="10" class="form-control" ></textarea>
+                                    <textarea name="anonce" id="editor" cols="30" rows="10"
+                                              class="form-control"></textarea>
                                 </div>
                             </div>
 
-                          
+
                         </div>
 
 
-
-
-
-
                     </div>
-
 
 
                     <!-- /.box-body -->

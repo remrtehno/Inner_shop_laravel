@@ -2,7 +2,8 @@
     <li class="header">MAIN NAVIGATION</li>
     <li><a href="{{ route('post.index') }}"><i class="fa fa-tags"></i> <span>Все товары</span></a></li>
     <li><a href="{{ route('shops.index') }}"><i class="fa fa-tags"></i> <span>Входящие Заказы</span></a></li>
-    {{--<li><a href="{{ route('income.index') }}"><i class="fa fa-tags"></i> <span>Приход</span></a></li>--}}
+    <li><a href="{{ route('prihod.index') }}"><i class="fa fa-tags"></i> <span>Приход</span></a></li>
+    <li><a href="{{ route('kassa.index') }}"><i class="fa fa-tags"></i> <span>Касса</span></a></li>
     <li><a href="{{ route('orders.index') }}"><i class="fa fa-tags"></i> <span>Все Заказы</span></a></li>
     <li><a href="{{ route('payments-shop.index') }}"><i class="fa fa-tags"></i> <span>Оплата - Магазины</span></a></li>
     <li><a href="{{ route('payments-supplier.index') }}"><i class="fa fa-tags"></i> <span>Оплата - Поставщики</span></a>

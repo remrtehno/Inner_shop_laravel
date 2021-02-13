@@ -15,7 +15,7 @@
         <section class="content">
 
             @include('admin.errors')
-            <form method="post" action="{{route('post.store')}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('prihod.store')}}" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Default box -->
@@ -31,6 +31,13 @@
                         <div class="box-body">
                             <div class="col-md-6">
 
+
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Дата и время</label>
+                                    <input class="datapicker" data-date-format="yyyy-mm-dd"
+                                           name="created_at">
+                                </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Артикул</label>
@@ -75,36 +82,21 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Закупочная Цена</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1" placeholder=""
-                                           name="buy_price">
+                                           name="zakup_price">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Розничная Цена</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1" placeholder=""
-                                           name="price">
-                                </div>
-
-                                <div class="form-group" style="display: none;">
-                                    <label for="exampleInputEmail1">Скидка</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder=""
-                                           name="label">
-                                </div>
-
-                                <div class="form-group" style="display: none;" >
-                                    <label>
-                                        <input type="checkbox" checked name="is_sample" value="1">
-                                        Образец
-                                    </label>
+                                           name="rozn_price">
                                 </div>
 
 
-                                <div class="form-group">
 
-                                    <label for="exampleInputFile">Картинка</label>
-                                    <input type="file" id="exampleInputFile" name="img">
 
-                                    <p class="help-block">png,jpeg,jpg размер 400x266</p>
-                                </div>
+
+
+
 
 
                             <!--  <div class="form-group">
@@ -146,13 +138,7 @@
 
                             </div>
 
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Описание</label>
-                                    <textarea name="anonce" id="editor" cols="30" rows="10"
-                                              class="form-control"></textarea>
-                                </div>
-                            </div>
+
 
 
                         </div>

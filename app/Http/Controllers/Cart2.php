@@ -91,7 +91,7 @@ class Cart2 extends Controller {
 				'tovar_id'    => $prod->id,
 				'status'      => 'Ожидает',
 				'user_id'     => Auth::user()->id,
-				'shop_id'     => $prod->shop_id,
+				'shop_id'     => $request->get('shop_id'),
 				'is_cache'    => $request->input( 'is_cache' ) ? 1 : 0,
 				'qty'         => $item->qty,
 				'article'     => $prod->article,
