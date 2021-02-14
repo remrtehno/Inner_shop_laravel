@@ -59,9 +59,13 @@ Route::group( [
 	Route::resource( '/samples', 'SamplesController' );
 	Route::resource( '/warehouse', 'WarehouseController' );
 	Route::resource( '/prihod', 'PrihodController' );
+	
+	Route::get( '/prihod-date', 'PrihodController@filter_by_date' )->name('prihod_by_date');
+	
 	Route::resource( '/kassa', 'KassaController' );
 	
 	Route::get( 'return-supplier', "ReturnedProductsController@return" )->name( 'returnSupplier' );
+	Route::get( 'return-shop', "ReturnedProductsController@return_shop" )->name( 'return_shop' );
 	
 } );
 

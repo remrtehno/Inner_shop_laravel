@@ -52,29 +52,11 @@
                                 <td>{{ $item->article }}</td>
                                 <td>{{ $item->batch }}</td>
                                 <td>{{ $item->quantity_sum ? $item->quantity_sum : $item->qty }}</td>
-                                <td>{{ $item->getShopsBySamples() }}</td>
+                                <td>{{ $item->getShopsBySamples($item->getId()) }}</td>
                                 <td>{{ $item->buy_price }}</td>
-
-                                <td>
-                                {{ $item->price }}
-                                <!-- <div> <b>Цена: </b>{{ $item->price ? $item->price : 0 }} сум.<br>
-                               <b>В долларах : </b> {{ $item->price_dollars ? $item->price_dollars : 0 }} $<br>
-                                <b>Курс:</b> {{ $item->dollar_rate ? $item->dollar_rate : 0 }} <br>
-                                 @if($item->label)
-                                    <b>{{ $item->label }}% скидка</b>
-                                @endif -->
-                                </td>
-                                <td>
-                                    {{ $item->sklad }}
-
-                                </td>
-
-
-                                <td>
-                                    {{ $item->supplier }}
-                                </td>
-
-
+                                <td>{{ $item->price }}</td>
+                                <td>{{ $item->sklad }}</td>
+                                <td>{{ $item->supplier }}</td>
                                 <td><a href="{{ route('post.edit',['id'=>$item->getId()]) }}" class="fa fa-pencil"
                                        style="float: left;"></a>
 

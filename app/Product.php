@@ -50,8 +50,8 @@ class Product extends Model {
 		return $id;
 	}
 	
-	public function getShopsBySamples() {
-		$samples = Samples::select( 'shop_id' )->where( 'product_id', $this->id )->first();
+	public function getShopsBySamples($id) {
+		$samples = Samples::select( 'shop_id' )->where( 'product_id', $id->id )->first();
 		$arr     = isset( $samples->shop_id ) ? explode( ',', $samples->shop_id ) : [];
 		if ( ( $key = array_search( '-1', $arr ) ) !== false ) {
 			unset( $arr[ $key ] );

@@ -23,7 +23,7 @@ class ShopsController extends Controller
         $shops = Shops::all();
 
         $returned_products = ReturnedProducts::all();
-
+	    
         return view("admin.shops.index", compact('shops', 'returned_products'));
     }
 

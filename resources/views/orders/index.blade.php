@@ -27,16 +27,16 @@
                     <div class="score_main">
                         <table class="score table">
                             <thead>
-                                <tr>
-                                    <th>Дата</th>
-                                    <th>Артикул</th>
-                                    <th>Партия</th>
-                                    <th>Количество</th>
-                                    <th>Розничная Цена</th>
-                                    <th>Статус</th>
-                                    <th>Комментарий</th>
-                                    <th>Действия</th>
-                                </tr>
+                            <tr>
+                                <th>Дата</th>
+                                <th>Артикул</th>
+                                <th>Партия</th>
+                                <th>Количество</th>
+                                <th>Розничная Цена</th>
+                                <th>Статус</th>
+                                <th>Комментарий</th>
+                                <th>Действия</th>
+                            </tr>
                             </thead>
                             @if($orders->count() > 0)
                                 @foreach($orders as $item)
@@ -50,7 +50,20 @@
                                         <td>{{$item->getStatus()}}</td>
                                         <td>{{$item->is_text}}</td>
                                         <td>
-                                            <a class="btn btn-danger" href="{{route('return-order', ['id' => $item->id])}}">Возврат</a>
+                                            <a class="btn btn-danger"
+                                               onclick="this.nextElementSibling
+                                               ? this.nextElementSibling.classList.toggle('d-block')
+                                               : null"
+                                            >Возврат</a>
+                                            <form style="display: none;"
+                                                  action="{{route('return-order', ['id' => $item->id])}}" method="get">
+                                                <input style="margin: 0; margin-top: 10px;" type="number"
+                                                       onkeyup="this.value <= {{$item->qty}}
+                                                               ? this.value = this.value
+                                                               : this.value = {{$item->qty}} " name="qty" value="1">
+                                                <small>Максимум {{$item->qty}}</small>
+                                                <button class="btn btn-danger">Вернуть</button>
+                                            </form>
                                         </td>
                                     </tr>
 

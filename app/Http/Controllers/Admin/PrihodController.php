@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Prihod;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ProdCat;
@@ -20,7 +21,10 @@ class PrihodController extends Controller {
 	 *
 	 * @return \Illuminate\Http\Response
 	 */
+	
 	public function index() {
+		
+		
 		$prod   = Prihod::all();
 		$prihod = DB::select( 'SELECT `created_at`,
 																					`article`,
@@ -32,10 +36,38 @@ class PrihodController extends Controller {
 																					`supplier`
 																					
 																					FROM `products`' );
+		$to     = '';
+		$from   = '';
+		
+		return view( "admin.prihod.index", compact( 'prod', 'prihod', 'to', 'from' ) );
 		
 		
-		return view( "admin.prihod.index", compact( 'prod', 'prihod' ) );
+	}
+	
+	public function filter_by_date( Request $request ) {
+		$from = Carbon::parse( $request->all()['from'] )
+		              ->startOfDay()// 2018-09-29 00:00:00.000000
+		              ->toDateTimeString(); // 2018-09-29 00:00:00
 		
+		$to = Carbon::parse( $request->all()['to'] )
+		            ->endOfDay()// 2018-09-29 23:59:59.000000
+		            ->toDateTimeString(); // 2018-09-29 23:59:59
+		
+		$prod   = Prihod::all();
+		$prihod = DB::select( "SELECT `created_at`,
+																					`article`,
+																					`batch`,
+																					`qty`,
+																					`buy_price`,
+																					`price`,
+																					`sklad`,
+																					`supplier`
+																					FROM `products`
+																					WHERE `created_at`
+																					BETWEEN '$from' AND '$to' " );
+
+		
+		return view( "admin.prihod.index", compact( 'prod', 'prihod', 'to', 'from' ) );
 		
 	}
 	

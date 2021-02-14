@@ -35,10 +35,11 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     @foreach($shops as $key => $item)
-                        <li role="presentation" class="{{ $key == 0 ? 'active' : ''}}"><a href="#m-{{$item->id}}"
-                                                                                          aria-controls="home"
-                                                                                          role="tab"
-                                                                                          data-toggle="tab"> {{$item->title}}
+                        <li role="presentation" class="{{ $key == 0 ? 'active' : ''}}">
+                            <a href="#m-{{$item->id}}"
+                               aria-controls="home"
+                               role="tab"
+                               data-toggle="tab"> {{$item->title}}
                                 @if(count($item->ordersWait())) <span
                                         class="badge"> {{count($item->ordersWait())}}</span> @endif
                             </a></li>
@@ -108,25 +109,6 @@
                                                     </form>
                                                 </div>
 
-                                            <!-- <form style="float: left;" action="{{route('cahngeStatus',['id'=>$item->id, 'status' => 'Возврат'])}}" method="post">
-                                    @csrf
-
-                                    
-                                    <input type="hidden" name="_method" value="put">
-
-                                    
-                                </form> -->
-
-                                            <!-- <form style="float: left;" action="{{route('cahngeStatus',['id'=>$item->id, 'status' => 'Нету на складе'])}}" method="post">
-                                    @csrf
-
-
-                                    <button type="submit" class="btn btn-danger">Нету на складе</button>
-                                    <input type="hidden" name="_method" value="put">
-
-                                    
-                                </form> -->
-
 
                                             </td>
                                         </tr>
@@ -141,20 +123,7 @@
                             <a class=" btn btn-info" href="{{route('shops.edit',['id'=>$item->id])}}">Редактировать <i
                                         class="fa fa-pencil"></i></a>
 
-
                             <hr>
-
-
-                            <!--   <br>
-                              Оплата:   0<br>
-                              <select name="" id="">
-                                <option value=""></option>
-                              </select>
-                              <button></button> -->
-
-                            <!--  <span style="background: red;">Остаток:   0<br></span> -->
-
-
                             <hr>
 
 
@@ -176,15 +145,23 @@
 
                             @foreach($returned_products as $key => $item)
                                 <tr>
-                                    <td>{{$item->shop_id}}</td>
+                                    <td>{{$item->getShopByid()}}</td>
                                     <td>{{$item->product_id}}</td>
                                     <td>{{$item->text}}</td>
                                     <td>{{$item->qty}}</td>
                                     <td>{{$item->created_at}}</td>
                                     <td>
                                         <a style="float: left;" class="btn btn-success"
-                                           href="{{route('returnSupplier', ['id' => $item->product_id, 'qty' => $item->qty])}}">Вернуть
-                                            поставщику</a>
+                                           href="{{route('returnSupplier',
+                                           ['id' => $item->product_id, 'qty' => $item->qty, 'return_id' => $item->id])}}
+                                                   ">
+                                            Принять
+                                        </a>
+                                        &nbsp;
+                                        <a href="{{route('return_shop',
+                                           ['id' => $item->product_id, 'qty' => $item->qty, 'return_id' => $item->id ])}}
+                                                " class="btn btn-danger">Отменить</a>
+
                                     </td>
                                 </tr>
                             @endforeach

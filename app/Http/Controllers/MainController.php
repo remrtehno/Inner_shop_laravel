@@ -17,8 +17,6 @@ use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 
-
-
 class MainController extends Controller {
 	public function index() {
 		
@@ -166,7 +164,6 @@ class MainController extends Controller {
 	}
 	
 	
-	
 	public function orders() {
 		$user   = Auth::user();
 		$orders = Order::where( 'user_id', '=', $user->id )->get();
@@ -178,38 +175,39 @@ class MainController extends Controller {
 		return view( "orders.index", compact( 'title', 'meta_key', 'meta_desc', 'user', 'orders', 'products' ) );
 	}
 	
-	public function returnOrder($id) {
-	
+	public function returnOrder( Request $request, $id ) {
+		
+		extract( $request->all() );
+		
 		
 		$user = Auth::user();
 		
-		$order = Order::where('id', '=', $id)->where( 'user_id', '=', $user->id )->first();
-
-		$product = Product::find($order->tovar_id);
-		$product->qty =  $product->qty + $order->qty;
-		$product->save();
-	
+		$order = Order::where( 'id', '=', $id )->where( 'user_id', '=', $user->id )->first();
 		
-		ReturnedProducts::create([
+//		$product      = Product::find( $order->tovar_id );
+//		$product->qty = $product->qty + $order->qty;
+//		$product->save();
+		
+		if($qty > $order->qty) {
+			abort('404', 'Превышено кол-во');
+		}
+		
+		
+		ReturnedProducts::create( [
 			'product_id' => $order->tovar_id,
-			'shop_id' => $order->shop_id,
-			'qty' => $order->qty,
-			'text' => "Вернул магазин $user->name",
-		]);
-
-
+			'shop_id'    => $order->shop_id,
+			'qty'        => $qty,
+			'text'       => "Вернул магазин $user->name",
+		] );
+		
+		
 		$order->is_returned = 1;
-		$order->status = 0;
-		$order->is_text = "Вернул магазин $user->name";
+		$order->status      = 0;
+		$order->is_text     = "Вернул магазин $user->name";
 		$order->save();
 		
 		
-		return redirect(route('orders'));
-
-		
-		
-		
-		
+		return redirect( route( 'orders' ) );
 		
 		
 	}

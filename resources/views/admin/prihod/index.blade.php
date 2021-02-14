@@ -28,6 +28,16 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
+                    <form action="{{route('prihod_by_date')}}" method="get">
+                        <h4 align="center" style="float: left;">Выберите дату</h4>
+                        <button style="float: right;">Показать</button>
+
+                        <input class="datapicker" data-date-format="mm/dd/yyyy" name="to" value="{{ $to }}"
+                               placeholder="до" style="float: right;">
+                        <input class="datapicker" data-date-format="yyyy-mm-dd " name="from" value="{{ $from }}"
+                               placeholder="от" style="float: right;">
+                        <div style="clear: both;"></div>
+                    </form>
 
 
                     <table class="table DataTable table-bordered table-striped">
