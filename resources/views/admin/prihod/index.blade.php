@@ -40,6 +40,7 @@
                     </form>
 
 
+
                     <table class="table DataTable table-bordered table-striped">
                         <thead>
                         <tr>
@@ -65,16 +66,13 @@
                                 <td>{{$item->price}}</td>
                                 <td>{{$item->sklad}}</td>
                                 <td>{{$item->supplier}}</td>
-                                <td><form action="{{route('post.destroy',['id'])}}" method="post">
-                                        @csrf
+                                <td>
 
-                                        <input type="hidden" name="_method" value="delete">
-                                        <button onclick="return confirm('are you sure?')" type="submit"
-                                                class="delete btn btn-danger"
-                                                style="float: left;border: 0;background: none; color: #0d6aad">
-                                            Возврат
-                                        </button>
-                                    </form></td>
+                                    <a href="{{route('returnSupplier',
+                                           ['id' => $item->id, 'qty' => $item->qty ])}}
+                                            " class="btn btn-danger">Вернуть</a>
+
+                                </td>
                             </tr>
 
 

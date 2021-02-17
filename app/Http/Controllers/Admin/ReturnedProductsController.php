@@ -24,10 +24,17 @@ class ReturnedProductsController extends Controller {
 		
 		
 		$product = Product::find( $id );
-		$product->qty - $qty;
-		$product->save();
 		
-		ReturnedProducts::find( $return_id )->delete();
+		if ( $product->qty >= $qty ) {
+			$product->qty = $product->qty - $qty;
+			$product->save();
+		} else {
+			abort('404');
+		}
+		
+		if ( isset( $return_id ) ) {
+			ReturnedProducts::find( $return_id )->delete();
+		}
 		
 		
 		return redirect()->back();

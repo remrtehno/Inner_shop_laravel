@@ -27,6 +27,7 @@ class PrihodController extends Controller {
 		
 		$prod   = Prihod::all();
 		$prihod = DB::select( 'SELECT `created_at`,
+																					`id`,
 																					`article`,
 																					`batch`,
 																					`qty`,
