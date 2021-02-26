@@ -35,7 +35,7 @@ class MainController extends Controller {
 		
 		
 		return view( "index.index", compact( 'slider', 'product_cats', 'userwrap', 'about', 'gallery', 'news', 'products', 'video',
-			'title', 'meta_key', 'meta_desc', 'ooo' ) );
+			'title', 'meta_key', 'meta_desc' ) );
 		
 		
 	}

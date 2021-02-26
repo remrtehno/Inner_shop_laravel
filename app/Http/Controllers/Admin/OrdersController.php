@@ -94,7 +94,7 @@ class OrdersController extends Controller {
 		
 		
 		return redirect()->back();
-	}z
+	}
 	
 	/**
 	 * Display the specified resource.
